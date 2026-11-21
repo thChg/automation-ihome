@@ -1,0 +1,32 @@
+.dashboard-shell {
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+.dashboard-card {
+  width: min(620px, calc(100vw - 48px));
+  display: grid;
+  gap: 20px;
+  text-align: left;
+}
+
+.dashboard-card h1 {
+  margin: 4px 0 0;
+  font-size: 28px;
+}
+
+.logout-button {
+  width: fit-content;
+  min-height: 46px;
+  padding: 0 18px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--social-bg);
+  color: var(--text-h);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}

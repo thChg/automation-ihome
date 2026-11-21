@@ -19,6 +19,7 @@ Primary objectives:
 - Backend framework: NestJS (major/minor versions to be pinned after project initialization).
 - Frontend: Vite with React, TypeScript, and React DOM.
 - Frontend build tooling: Vite 8 and TypeScript 7 in the generated scaffold.
+- Frontend API calls: Axios; endpoint definitions live in `frontend/src/api/`.
 - ORM: Drizzle ORM with a PostgreSQL driver.
 - Database: PostgreSQL (exact major/minor version to be finalized during implementation).
 - Containers: Docker and Docker Compose.
@@ -137,6 +138,8 @@ Planned environment variables include:
 - AWS region and optional S3 backup configuration.
 - Backend runtime environment and public listen port.
 - Optional Nginx/TLS configuration.
+- `AUTH_BOOTSTRAP_EMAIL` and `AUTH_BOOTSTRAP_PASSWORD` for the initial database-backed admin account.
+- `JWT_SECRET` for JWT signing and `JWT_EXPIRES_IN` for token lifetime.
 
 Recommended secret sources:
 - AWS SSM Parameter Store (SecureString) or AWS Secrets Manager for EC2 runtime secrets.
@@ -207,6 +210,12 @@ Deferred until workload, availability, or compliance requirements justify it:
 - Completed: initial frontend dependency installation and build/lint validation.
 - Completed: Vite development proxy from `/api` to the local NestJS backend health endpoint.
 - Completed: frontend backend-health status card.
+- Completed: backend users table and bootstrap admin seeding from environment variables.
+- Completed: JWT login/logout/session endpoints with HTTP-only cookies.
+- Completed: frontend login screen and authenticated dashboard shell.
+- Completed: frontend API layer refactor with Axios and centralized endpoint definitions.
+- Completed: frontend auth and dashboard UI separated into feature folders.
+- Completed: global frontend user/session state managed by `AuthContext` and `useAuth`.
 - In Progress: local end-to-end validation.
 - Not started: AWS EC2, EBS, ECR, S3, IAM, and Security Group setup.
 - Not started: first EC2 deployment.
