@@ -1,54 +1,37 @@
-import { useEffect, useState } from 'react'
+import { Navigate, Route, Routes } from 'react-router-dom'
+import type { ReactNode } from 'react'
+import { ProtectedRoute } from './components/ProtectedRoute'
+import { useAuth } from './context'
+import { LoginScreen, RegisterScreen } from './features/auth'
+import { Dashboard } from './features/dashboard'
 import './App.css'
 
-type HealthStatus = 'loading' | 'healthy' | 'unhealthy'
+function PublicOnlyRoute({ children }: { children: ReactNode }) {
+  const { user, sessionLoading } = useAuth()
+
+  if (sessionLoading) {
+    return <main className="app-shell"><div className="status-dot loading" /></main>
+  }
+
+  return user ? <Navigate to="/" replace /> : children
+}
 
 function App() {
-  const [healthStatus, setHealthStatus] = useState<HealthStatus>('loading')
-
-  useEffect(() => {
-    const controller = new AbortController()
-
-    async function checkHealth() {
-      setHealthStatus('loading')
-
-      try {
-        const response = await fetch('/api/health', {
-          signal: controller.signal,
-        })
-
-        if (!response.ok) {
-          throw new Error(`HTTP ${response.status}`)
-        }
-
-        const data = (await response.json()) as { status?: string }
-        setHealthStatus(data.status === 'ok' ? 'healthy' : 'unhealthy')
-      } catch (error) {
-        if (!(error instanceof DOMException && error.name === 'AbortError')) {
-          setHealthStatus('unhealthy')
-        }
-      }
-    }
-
-    void checkHealth()
-
-    return () => controller.abort()
-  }, [])
-
   return (
-    <main className="app-shell">
-      <section className="health-card" aria-live="polite">
-        <div className={`status-dot ${healthStatus}`} />
-        <div>
-          <p className="eyebrow">Backend status</p>
-          <h1>
-            {healthStatus === 'loading' && 'Checking…'}
-            {healthStatus === 'healthy' && 'System operational'}
-            {healthStatus === 'unhealthy' && 'Backend unavailable'}
-          </h1>
-        </div>
-      </section>
-    </main>
+    <Routes>
+      <Route
+        path="/login"
+        element={<PublicOnlyRoute><LoginScreen /></PublicOnlyRoute>}
+      />
+      <Route
+        path="/register"
+        element={<PublicOnlyRoute><RegisterScreen /></PublicOnlyRoute>}
+      />
+      <Route element={<ProtectedRoute />}>
+        <Route path="/" element={<Dashboard />} />
+      </Route>
+      <Route path="*" element={<Navigate to="/" replace />} />
+    </Routes>
   )
 }
 
