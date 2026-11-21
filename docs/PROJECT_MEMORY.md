@@ -20,6 +20,7 @@ Primary objectives:
 - Frontend: Vite with React, TypeScript, and React DOM.
 - Frontend build tooling: Vite 8 and TypeScript 7 in the generated scaffold.
 - Frontend API calls: Axios; endpoint definitions live in `frontend/src/api/`.
+- Frontend primary accent color: `#72a440`.
 - ORM: Drizzle ORM with a PostgreSQL driver.
 - Database: PostgreSQL (exact major/minor version to be finalized during implementation).
 - Containers: Docker and Docker Compose.
@@ -220,7 +221,8 @@ Deferred until workload, availability, or compliance requirements justify it:
 - Completed: admin user-management endpoints and dashboard controls.
 - Completed: promotion to a single admin account through the users RBAC workflow.
 - Completed: global frontend user/session state managed by `AuthContext` and `useAuth`.
-- Completed: React Router routes at `/login`, `/register`, and protected dashboard `/`.
+- Completed: React Router routes at `/login`, `/register`, protected `/`, `/users`, and `/profile`.
+- Completed: authenticated app layout with app name, Dashboard/Users navigation, profile icon, and collapsible sidebar.
 - In Progress: local end-to-end validation.
 - Not started: AWS EC2, EBS, ECR, S3, IAM, and Security Group setup.
 - Not started: first EC2 deployment.

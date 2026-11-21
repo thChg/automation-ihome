@@ -1,0 +1,207 @@
+.app-layout {
+  --sidebar-width: 248px;
+  min-height: 100svh;
+  display: grid;
+  grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
+  background: var(--bg);
+  transition: grid-template-columns 180ms ease;
+}
+
+.app-layout.sidebar-collapsed {
+  --sidebar-width: 72px;
+}
+
+.sidebar {
+  height: 100svh;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 16px 12px;
+  border-right: 1px solid var(--border);
+  background: var(--social-bg);
+  overflow: hidden;
+}
+
+.sidebar-brand {
+  height: 44px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 8px;
+  color: var(--text-h);
+  font-weight: 800;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.brand-icon {
+  width: 36px;
+  height: 36px;
+  flex: 0 0 36px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  color: #fff;
+  background: var(--accent);
+}
+
+.brand-name {
+  opacity: 1;
+  transition: opacity 120ms ease;
+}
+
+.sidebar-collapsed .brand-name {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.sidebar-menu {
+  display: grid;
+  gap: 6px;
+  margin-top: 24px;
+}
+
+.sidebar-menu a {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 12px;
+  border-radius: 9px;
+  color: var(--text);
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.sidebar-menu a svg {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 20px;
+  fill: currentColor;
+}
+
+.sidebar-menu a span {
+  opacity: 1;
+  transition: opacity 120ms ease;
+}
+
+.sidebar-collapsed .sidebar-menu a span {
+  opacity: 0;
+}
+
+.sidebar-menu a.active {
+  color: var(--accent);
+  background: var(--accent-bg);
+}
+
+.sidebar-toggle {
+  width: 36px;
+  height: 36px;
+  margin: auto 0 12px auto;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text-h);
+  background: var(--bg);
+  cursor: pointer;
+}
+
+.sidebar-toggle svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.profile-link {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-sizing: border-box;
+  padding: 4px 8px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text-h);
+  background: var(--bg);
+  text-decoration: none;
+  overflow: hidden;
+}
+
+.profile-link svg {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 20px;
+  fill: currentColor;
+}
+
+.profile-link span {
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sidebar-collapsed .profile-link {
+  width: 44px;
+  padding: 4px 11px;
+}
+
+.sidebar-collapsed .profile-link span {
+  display: none;
+}
+
+.profile-link.active {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.app-content {
+  min-width: 0;
+  min-height: 100svh;
+}
+
+@media (max-width: 640px) {
+  .app-layout,
+  .app-layout.sidebar-collapsed {
+    --sidebar-width: 72px;
+  }
+
+  .brand-name,
+  .sidebar-menu a span,
+  .profile-link span {
+    display: none;
+  }
+
+  .sidebar {
+    padding-inline: 12px;
+  }
+
+  .sidebar-menu a {
+    justify-content: center;
+    padding: 0;
+  }
+
+  .sidebar-brand {
+    justify-content: center;
+    padding: 0;
+  }
+
+  .profile-link {
+    width: 44px;
+    justify-content: center;
+    padding: 4px;
+  }
+
+  .sidebar-toggle {
+    margin-right: auto;
+  }
+}
