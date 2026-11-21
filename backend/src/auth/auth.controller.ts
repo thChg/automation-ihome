@@ -1,4 +1,5 @@
 import {
+  BadRequestException,
   Body,
   Controller,
   Get,
@@ -17,11 +18,25 @@ interface LoginBody {
   password?: string;
 }
 
+interface RegisterBody {
+  email?: string;
+  password?: string;
+}
+
 const COOKIE_NAME = 'ihome_session';
 
 @Controller('auth')
 export class AuthController {
   constructor(private readonly auth: AuthService) {}
+
+  @Post('register')
+  async register(@Body() body: RegisterBody) {
+    if (!body.email || !body.password) {
+      throw new BadRequestException('Vui lòng nhập email và mật khẩu');
+    }
+
+    return this.auth.register(body.email, body.password);
+  }
 
   @Post('login')
   @HttpCode(HttpStatus.OK)

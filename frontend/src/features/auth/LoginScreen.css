@@ -103,3 +103,21 @@
   color: #ef4444;
   font-size: 14px;
 }
+
+.login-success {
+  color: #16a34a;
+  font-size: 14px;
+}
+
+.mode-button {
+  min-height: 40px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  background: transparent;
+  color: var(--accent);
+  font: inherit;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+}

@@ -3,6 +3,7 @@ import type { FormEvent } from 'react'
 import { AxiosError } from 'axios'
 import { authApi } from '../../api'
 import { useAuth } from '../../context'
+import { Link, useNavigate } from 'react-router-dom'
 import './LoginScreen.css'
 
 export function LoginScreen() {
@@ -11,6 +12,7 @@ export function LoginScreen() {
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [submitting, setSubmitting] = useState(false)
+  const navigate = useNavigate()
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -20,6 +22,7 @@ export function LoginScreen() {
     try {
       const response = await authApi.login({ email, password })
       setUser(response.data.user)
+      navigate('/', { replace: true })
     } catch (loginError) {
       if (loginError instanceof AxiosError) {
         const message = loginError.response?.data?.message
@@ -76,6 +79,9 @@ export function LoginScreen() {
           <button className="login-button" type="submit" disabled={submitting}>
             {submitting ? 'Đang đăng nhập…' : 'Đăng nhập'}
           </button>
+          <Link className="mode-button" to="/register">
+            Yêu cầu tài khoản mới
+          </Link>
         </form>
       </section>
     </main>

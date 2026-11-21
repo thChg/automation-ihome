@@ -138,7 +138,7 @@ Planned environment variables include:
 - AWS region and optional S3 backup configuration.
 - Backend runtime environment and public listen port.
 - Optional Nginx/TLS configuration.
-- `AUTH_BOOTSTRAP_EMAIL` and `AUTH_BOOTSTRAP_PASSWORD` for the initial database-backed admin account.
+- No bootstrap admin variables or startup-time user provisioning; the initial/current admin is managed in PostgreSQL.
 - `JWT_SECRET` for JWT signing and `JWT_EXPIRES_IN` for token lifetime.
 
 Recommended secret sources:
@@ -210,12 +210,17 @@ Deferred until workload, availability, or compliance requirements justify it:
 - Completed: initial frontend dependency installation and build/lint validation.
 - Completed: Vite development proxy from `/api` to the local NestJS backend health endpoint.
 - Completed: frontend backend-health status card.
-- Completed: backend users table and bootstrap admin seeding from environment variables.
+- Completed: backend users table and environment-independent user seeding through the registration/approval flow.
 - Completed: JWT login/logout/session endpoints with HTTP-only cookies.
 - Completed: frontend login screen and authenticated dashboard shell.
 - Completed: frontend API layer refactor with Axios and centralized endpoint definitions.
 - Completed: frontend auth and dashboard UI separated into feature folders.
+- Completed: public user registration creates `pending` accounts requiring single-admin approval.
+- Completed: RBAC supports `admin` and `user`; only one bootstrap admin is permitted.
+- Completed: admin user-management endpoints and dashboard controls.
+- Completed: promotion to a single admin account through the users RBAC workflow.
 - Completed: global frontend user/session state managed by `AuthContext` and `useAuth`.
+- Completed: React Router routes at `/login`, `/register`, and protected dashboard `/`.
 - In Progress: local end-to-end validation.
 - Not started: AWS EC2, EBS, ECR, S3, IAM, and Security Group setup.
 - Not started: first EC2 deployment.

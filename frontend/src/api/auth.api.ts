@@ -16,7 +16,22 @@ export type LoginResponse = {
   user: SessionUser
 }
 
+export type RegisterPayload = {
+  email: string
+  password: string
+}
+
+export type RegisterResponse = {
+  id: number
+  email: string
+  role: 'user'
+  status: 'pending'
+}
+
 export const authApi = {
+  register(payload: RegisterPayload) {
+    return apiClient.post<RegisterResponse>(apiEndpoints.auth.register, payload)
+  },
   login(payload: LoginPayload) {
     return apiClient.post<LoginResponse>(apiEndpoints.auth.login, payload)
   },
