@@ -1,13 +1,13 @@
 .dashboard-shell {
-  min-height: 100svh;
+  min-height: calc(100svh - 64px);
   display: grid;
   place-items: center;
-  padding: 24px;
+  padding: 40px 24px;
   box-sizing: border-box;
 }
 
 .dashboard-card {
-  width: min(620px, calc(100vw - 48px));
+  width: min(620px, 100%);
   display: grid;
   gap: 20px;
   text-align: left;
@@ -16,86 +16,4 @@
 .dashboard-card h1 {
   margin: 4px 0 0;
   font-size: 28px;
-}
-
-.users-panel {
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  background: var(--bg);
-  overflow: hidden;
-}
-
-.users-heading {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 16px;
-  border-bottom: 1px solid var(--border);
-}
-
-.users-heading h2 {
-  margin: 0;
-}
-
-.users-heading button,
-.user-actions button,
-.remove {
-  min-height: 36px;
-  padding: 0 12px;
-  border: 1px solid var(--border);
-  border-radius: 7px;
-  background: var(--social-bg);
-  color: var(--text-h);
-  cursor: pointer;
-}
-
-.users-list {
-  padding: 8px 16px 16px;
-}
-
-.user-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 12px 0;
-  border-bottom: 1px solid var(--border);
-}
-
-.user-row:last-child {
-  border-bottom: 0;
-}
-
-.user-row p {
-  margin-top: 3px;
-  font-size: 13px;
-}
-
-.user-actions {
-  display: flex;
-  gap: 8px;
-}
-
-.user-actions .approve {
-  border-color: #22c55e;
-  color: #16a34a;
-}
-
-.user-actions .reject,
-.remove {
-  border-color: #ef4444;
-  color: #dc2626;
-}
-
-.logout-button {
-  width: fit-content;
-  min-height: 46px;
-  padding: 0 18px;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  background: var(--social-bg);
-  color: var(--text-h);
-  font: inherit;
-  font-weight: 700;
-  cursor: pointer;
 }

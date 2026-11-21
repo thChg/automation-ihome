@@ -4,6 +4,9 @@ import { ProtectedRoute } from './components/ProtectedRoute'
 import { useAuth } from './context'
 import { LoginScreen, RegisterScreen } from './features/auth'
 import { Dashboard } from './features/dashboard'
+import { UsersPage } from './features/users'
+import { ProfilePage } from './features/profile'
+import { AppLayout } from './components/AppLayout'
 import './App.css'
 
 function PublicOnlyRoute({ children }: { children: ReactNode }) {
@@ -14,6 +17,11 @@ function PublicOnlyRoute({ children }: { children: ReactNode }) {
   }
 
   return user ? <Navigate to="/" replace /> : children
+}
+
+function AdminRoute({ children }: { children: ReactNode }) {
+  const { user } = useAuth()
+  return user?.role === 'admin' ? children : <Navigate to="/" replace />
 }
 
 function App() {
@@ -28,7 +36,14 @@ function App() {
         element={<PublicOnlyRoute><RegisterScreen /></PublicOnlyRoute>}
       />
       <Route element={<ProtectedRoute />}>
-        <Route path="/" element={<Dashboard />} />
+        <Route element={<AppLayout />}>
+          <Route path="/" element={<Dashboard />} />
+          <Route
+            path="/users"
+            element={<AdminRoute><UsersPage /></AdminRoute>}
+          />
+          <Route path="/profile" element={<ProfilePage />} />
+        </Route>
       </Route>
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>

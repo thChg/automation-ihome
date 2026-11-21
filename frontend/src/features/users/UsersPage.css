@@ -1,0 +1,86 @@
+.users-page {
+  width: min(960px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 40px 0;
+  text-align: left;
+}
+
+.page-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.page-heading h1 {
+  margin: 4px 0 0;
+  font-size: 36px;
+}
+
+.page-heading button,
+.users-table button {
+  min-height: 38px;
+  padding: 0 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--social-bg);
+  color: var(--text-h);
+  cursor: pointer;
+}
+
+.users-table {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg);
+  overflow: hidden;
+}
+
+.user-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px;
+  border-bottom: 1px solid var(--border);
+}
+
+.user-row:last-child {
+  border-bottom: 0;
+}
+
+.user-summary p {
+  margin-top: 4px;
+  font-size: 14px;
+}
+
+.user-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.user-actions .approve {
+  border-color: #22c55e;
+  color: #16a34a;
+}
+
+.user-actions .reject,
+.remove {
+  border-color: #ef4444;
+  color: #dc2626;
+}
+
+.page-error {
+  color: #ef4444;
+}
+
+@media (max-width: 640px) {
+  .users-page {
+    width: calc(100% - 32px);
+  }
+
+  .user-row {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
